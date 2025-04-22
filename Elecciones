@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int totalcan;
+    cout << "Numero de candidatos: ";
+    cin >> totalcan;
+    if(totalcan <= 0) {
+        cout << "Numero invalido!";
+        return 1;
+    }
+    int conteovot[totalcan] = {0};
+    int totalvot;
+    cout << "Numero de votos a ingresar: ";
+    cin >> totalvot;
+    cout<<endl;
+    cout << "Vota por el candidato segun el numero:" << endl;
+    for(int i = 0; i < totalcan; i++) {
+        cout << i << " - Candidato " << i << endl;
+    }
+    cout << endl;
+    for(int i = 0; i < totalvot; i++) {
+        int voto;
+        cout << "Voto #" << i+1 << " (0-" << totalcan-1 << "): ";
+        cin >> voto;
+
+        if(voto >= 0 && voto < totalcan) {
+            conteovot[voto]++;
+        } else {
+            cout << "Voto invalido - reintentar" << endl;
+            i--;
+        }
+    }
+    cout << endl;
+    cout << "RESULTADOS:" << endl;
+    for(int i = 0; i < totalcan; i++) {
+        cout << "Candidato " << i << ": " << conteovot[i] << " votos" << endl;
+    }
+    return 0;
+}
