@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int m, n, p;
+
+    // Pedir dimensiones
+    cout << "Ingrese filas de A: ";
+    cin >> m;
+    cout << "Ingrese columnas de A (y filas de B): ";
+    cin >> n;
+    cout << "Ingrese columnas de B: ";
+    cin >> p;
+
+    int A[m][n];
+    int B[n][p];
+    int C[m][p];
+
+    // Leer matriz A
+    cout << "Ingrese elementos de matriz A:\n";
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+            cout << "A[" << i << "][" << j << "]: ";
+            cin >> A[i][j];
+        }
+
+    // Leer matriz B
+    cout << "Ingrese elementos de matriz B:\n";
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < p; j++) {
+            cout << "B[" << i << "][" << j << "]: ";
+            cin >> B[i][j];
+        }
+
+    // Inicializar matriz C en 0
+    for (int i = 0; i < m; i++)
+        for (int j = 0; j < p; j++)
+            C[i][j] = 0;
+
+    // Multiplicar matrices
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < p; j++) {
+            for (int k = 0; k < n; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    // Mostrar resultado
+    cout << "Matriz resultado C:\n";
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < p; j++) {
+            cout << C[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
