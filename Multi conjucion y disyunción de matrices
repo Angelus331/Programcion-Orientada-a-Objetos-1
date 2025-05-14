@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+const int MAX = 6;
+void matrices (int A[][MAX], int B[][MAX], int &m, int &n, int &p){
+    srand(time(0));
+    m = rand() % 6 + 1; // Filas de A
+    n = rand() % 6 + 1; // Columnas de A (y filas de B)
+    p = rand() % 6 + 1; // Columnas de B
+    cout << "Matriz A (" << m << "x" << n << "):\n";
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < n; j++) {
+            A[i][j] = rand() % 10 + 1;
+            cout << A[i][j] << "\t";
+        }
+        cout << endl;
+    }
+    cout << "\nMatriz B (" << n << "x" << p << "):\n";
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < p; j++) {
+            B[i][j] = rand() % 10 + 1;
+            cout << B[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+}
+void multi (int A[][MAX], int B[][MAX], int C[][MAX], int m, int n, int p){
+    cout << "\nMatriz resultado C (" << m << "x" << p << "):\n";
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < p; j++) {
+            C[i][j] = 0;
+            for(int k = 0; k < n; k++) {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+            cout << C[i][j] << "\t";
+        }
+        cout << endl; 
+    }
+}
+int main() {
+    int A[MAX][MAX], B[MAX][MAX], C[MAX][MAX];
+    int m, n, p;
+    matrices(A, B, m, n, p);
+    multi(A, B, C, m, n, p);
+    return 0;
+}
